@@ -1,5 +1,5 @@
 NAME = push_swap
-SRCS=
+SRCS = ft_atoi.c ft_split.c push_swap.c utils.c
 
 
 OBJ = $(SRCS:.c=.o)
@@ -23,6 +23,6 @@ clean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) all
+	$(RM) $(NAME)
 
 re: fclean $(NAME)

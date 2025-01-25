@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:23:25 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/24 17:24:30 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:50:58 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,11 @@ typedef struct t_stack
 
 char	**ft_split(char const *s, char c);
 int		ft_atoi(char *nb);
+int		ft_strlen(char *str);
+int		ft_strcmp(char *str1, char *str2);
+char    *ft_strcat(char *dest, char *src);
+void	ft_strcpy(char *dest, char *src);
+void	free_split(char **split);
+
 
 #endif

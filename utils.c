@@ -5,58 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 15:39:50 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/24 09:19:00 by tibarike         ###   ########.fr       */
+/*   Created: 2025/01/25 16:51:41 by tibarike          #+#    #+#             */
+/*   Updated: 2025/01/25 17:59:05 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-s_stack	get_max(s_stack	*stack)
+int	ft_strlen(char *str)
 {
-	s_stack	*current;
-	s_stack	*tmp;
+	int	i;
 
-	current = stack;
-	tmp = current;
-	while (current)
-	{
-		if (current->value > tmp->value)
-			tmp = current;
-		current = current->next;
-	}
-	return(*tmp);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-s_stack	get_min(s_stack	*stack)
+int	ft_strcmp(char *str1, char *str2)
 {
-	s_stack	*current;
-	s_stack	*tmp;
+	int	i;
 
-	current = stack;
-	tmp = current;
-	while (current)
+	i = 0;
+	while ((str1[i] || str2[i]))
 	{
-		if (current->value < tmp->value)
-			tmp = current;
-		current = current->next;
-	}
-	return(*tmp);
-}
-
-int check_sorted(s_stack *stack)
-{
-	s_stack *tmp;
-	
-	tmp = stack;
-	while (tmp)
-	{
-		if (tmp->next != NULL)
-		{
-			if (tmp->value > tmp->next->value)
-				return (1);
-		}
-		tmp = tmp->next;
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
 	}
 	return (0);
+}
+
+char    *ft_strcat(char *dest, char *src)
+{
+	int     i;
+	int     j;	
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
+	{
+	    i++;
+	}
+	while (src[j] != '\0')
+	{
+	    dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+void	ft_strcpy(char *dest, char *src)
+{
+	unsigned int	j;
+
+	j = 0;
+	while (src[j])
+	{
+		dest[j] = src[j];
+		j++;
+	}
+	dest[j] = '\0';
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
