@@ -6,24 +6,34 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:39:50 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/25 19:23:41 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/26 16:53:58 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_stackadd_back(s_stack **lst, s_stack *new)
+void	ft_stackadd_back(s_stack **a, s_stack *new)
 {
 	s_stack	*last_n;
+	s_stack *curr;
 
-	if (lst == NULL)
+	if (!a || !new)
 		return ;
-	if (*lst == NULL)
+	curr = *a;
+	while (curr)
 	{
-		*lst = new;
+		if (curr->value > new->value)
+			curr->index++;
+		else
+			new->index++;
+		curr = curr->next;
+	}
+	if (*a == NULL)
+	{
+		*a = new;
 		return ;
 	}
-	last_n = ft_lstlast(*lst);
+	last_n = ft_stacklast(*a);
 	last_n->next = new;
 }
 
@@ -40,37 +50,43 @@ s_stack	*ft_stacknew(int value, int index)
 	return (tmp);
 }
 
-int	ft_stacksize(s_stack *lst)
+int	ft_stacksize(s_stack *stack)
 {
 	int	count;
 
 	count = 0;
-	while (lst)
+	while (stack)
 	{
-		lst = lst->next;
+		stack = stack->next;
 		count++;
 	}
 	return (count);
 }
 
-void	ft_stackclear(s_stack **lst, void (*del)(void *))
+s_stack	*ft_stacklast(s_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
+void	ft_stackclear(s_stack **stack)
 {
 	s_stack	*crnt;
 	s_stack	*tmp;
 
-	if (!lst || !del)
+	if (!stack)
 		return ;
-	crnt = *lst;
+	crnt = *stack;
 	while (crnt != NULL)
 	{
 		tmp = crnt;
 		crnt = crnt->next;
-		del(tmp->value);
-		del(tmp->position);
-		del(tmp->index);
 		free(tmp);
 	}
-	*lst = NULL;
+	*stack = NULL;
 }
 
 
@@ -89,6 +105,7 @@ s_stack	get_max(s_stack	*stack)
 	}
 	return(*tmp);
 }
+
 
 s_stack	get_min(s_stack	*stack)
 {
@@ -123,15 +140,24 @@ int check_sorted(s_stack *stack)
 	return (0);
 }
 
-void	free_split(char **split)
+int	check_dup(s_stack *a)
 {
-	int	i;
+	s_stack	*current;
+	s_stack	*checker;
 
-	i = 0;
-	while (split[i])
+	if (!a)
+		return (0);
+	current = a;
+	while (current)
 	{
-		free(split[i]);
-		i++;
+		checker = current->next;
+		while (checker)
+		{
+			if (current->value == checker->value)
+				return (0);
+			checker = checker->next;
+		}
+		current = current->next;
 	}
-	free(split);
+	return (1);
 }

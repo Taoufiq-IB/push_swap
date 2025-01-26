@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:51:41 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/25 17:59:05 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:08:56 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,38 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+int	not_sorted(int *arr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (arr[i] > arr[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	is_dup(int *arr, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (arr[i] == arr[j])
+				(write(2, "Error\n", 6), exit(1));
+			j++;
+		}
+		i++;
+	}
+	return ;
 }
