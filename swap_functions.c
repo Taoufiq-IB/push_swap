@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:16:36 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/26 18:27:03 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:15:56 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	sa(s_stack **a, int i)
 		write (1, "sa\n", 3);
 }
 
-void	sa(s_stack **b, int i)
+void	sb(s_stack **b, int i)
 {
 	s_stack	*tmp;
 	s_stack	*nb;

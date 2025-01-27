@@ -1,56 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_functions.c                                 :+:      :+:    :+:   */
+/*   p_functions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/26 18:00:53 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/27 11:07:47 by tibarike         ###   ########.fr       */
+/*   Created: 2025/01/26 17:11:48 by tibarike          #+#    #+#             */
+/*   Updated: 2025/01/26 19:24:52 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(s_stack **a, int i)
+void	pb(s_stack **a, s_stack **b)
 {
 	s_stack	*na;
-	s_stack	*tmp;
+	s_stack	*nb;
 
-	if (ft_stacksize(*a) < 2)
+	if (*a == NULL)
 		return ;
 	na = *a;
-	tmp = *a;
-	while (tmp->next)
-		tmp = tmp->next;
+	nb = *b;
 	*a = na->next;
-	na->next = NULL;
-	tmp->next = na;
-	if (i == 1)
-		write (1, "ra\n", 3);
+	na->next = nb;
+	*b = na;
+	write (1, "pb\n", 3);
 }
 
-void	rb(s_stack **b, int i)
+void	pa(s_stack **a, s_stack **b)
 {
-	s_stack	*nb;
-	s_stack *tmp;
+	s_stack	*na;
+	s_stack *nb;
 
-	if (ft_stacksize(*b) < 2)
+	if (*b == NULL)
 		return ;
 	nb = *b;
-	tmp = *b;
-	while (tmp->next)
-		tmp = tmp->next;
-	*b = nb->next;
-	nb->next = NULL;
-	tmp->next = nb;
-	if (i == 1)
-		write (1, "rb\n", 3);
-}
+	na = *a;
 
-void	rr(s_stack **a, s_stack **b)
-{
-	ra(a, 0);
-	rb(b, 0);
-	write (1, "rr\n", 3);
+	*b = nb->next;
+	nb->next = na;
+	*a = nb;
+	write (1, "pa\n", 3);
 }

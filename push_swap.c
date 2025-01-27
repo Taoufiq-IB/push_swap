@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:33:55 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/26 17:09:57 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:28:44 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*join_arguments(int argc, char **argv, char sep)
 	}
 	joined = malloc(len * sizeof(char));
 	if (!joined)
-		return (NULL);
+		return (free(joined), NULL);
 	joined[0] = '\0';
 	i = 1;
 	while (i < argc)
@@ -40,12 +40,13 @@ char	*join_arguments(int argc, char **argv, char sep)
 	return (joined);
 }
 
-int	*int_array(int argc, char **argv, int *size)
+int	*init_array(int argc, char **argv, int *size)
 {
 	char	*arr;
 	int		*int_arr;
 	char	**split;
 	int		i;
+	int		success;
 
 	i = 0;
 	arr = join_arguments(argc, argv, ' ');
@@ -61,13 +62,20 @@ int	*int_array(int argc, char **argv, int *size)
 	i = 0;
 	while (split[i])
 	{
-		int_arr[i] = ft_atoi(split[i]);
+		int_arr[i] = ft_atoi(split[i], &success);
+		if (!success)
+		{
+			free(int_arr);
+			free_split(split);
+			(write(2, "Error\n", 6), exit(1));
+		}
 		i++;
 	}
-	free_split(split);
 	*size = i;
+	free_split(split);
 	return (int_arr);
 }
+
 
 void	create_stack(s_stack **a, int *int_arr, int size)
 {
@@ -88,14 +96,31 @@ void	create_stack(s_stack **a, int *int_arr, int size)
 #include <stdio.h>
 int main(int argc, char **argv)
 {
-	int size;
+	int		size;
+	s_stack *a = NULL;
+	s_stack *b = NULL;
+	int		stack_size;
 
-	if (argc == 1)
-		return (1);
+	stack_size = 0;
 	size = 0;
-	int *arr = int_array(argc, argv, &size);
+	int *arr = init_array(argc, argv, &size);
 	if (arr == NULL)
 		return(1);
 	is_dup(arr, size);
+	create_stack(&a, arr, size);
 	free(arr);
+	if (check_sorted(a) == 0)
+	{
+		if (ft_stacksize(a) <= 5)
+			sort_five_less(&a, &b);
+	}
+	ft_stackclear(&a);
+	return (0);
 }
+
+	// tmp = a;
+	// while (tmp)
+	// {
+	// 	printf ("%d->", tmp->value);
+	// 	tmp = tmp->next;
+	// }

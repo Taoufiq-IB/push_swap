@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 17:20:53 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/26 18:00:39 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:15:26 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	rra(s_stack **a, int i)
 {
 	s_stack	*na;
 	s_stack	*tmp;
-
+	
+	if (ft_stacksize(*a) < 2)
+		return ;
 	na = *a;
 	tmp = *a;
 	while (tmp->next->next)
@@ -32,12 +34,10 @@ void	rrb(s_stack **b, int i)
 	s_stack	*nb;
 	s_stack	*tmp;
 
-	if (ft_stacksize(b) < 2)
+	if (ft_stacksize(*b) < 2)
 		return ;
-
 	nb = *b;
 	tmp = *b;
-
 	while (tmp->next->next)
 		tmp = tmp->next;
 	tmp->next->next = nb;

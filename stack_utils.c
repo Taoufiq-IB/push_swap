@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:39:50 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/26 16:53:58 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:50:57 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,55 +89,18 @@ void	ft_stackclear(s_stack **stack)
 	*stack = NULL;
 }
 
-
-s_stack	get_max(s_stack	*stack)
-{
-	s_stack	*current;
-	s_stack	*tmp;
-
-	current = stack;
-	tmp = current;
-	while (current)
-	{
-		if (current->value > tmp->value)
-			tmp = current;
-		current = current->next;
-	}
-	return(*tmp);
-}
-
-
-s_stack	get_min(s_stack	*stack)
-{
-	s_stack	*current;
-	s_stack	*tmp;
-
-	current = stack;
-	tmp = current;
-	while (current)
-	{
-		if (current->value < tmp->value)
-			tmp = current;
-		current = current->next;
-	}
-	return(*tmp);
-}
-
 int check_sorted(s_stack *stack)
 {
 	s_stack *tmp;
-	
+
 	tmp = stack;
-	while (tmp)
+	while (tmp->next != NULL)
 	{
-		if (tmp->next != NULL)
-		{
-			if (tmp->value > tmp->next->value)
-				return (1);
-		}
+		if (tmp->value > tmp->next->value)
+			return (0);
 		tmp = tmp->next;
 	}
-	return (0);
+	return (1);
 }
 
 int	check_dup(s_stack *a)
@@ -161,3 +124,36 @@ int	check_dup(s_stack *a)
 	}
 	return (1);
 }
+
+s_stack	*get_max(s_stack *stack)
+{
+	s_stack	*current;
+	s_stack	*tmp;
+
+	current = stack;
+	tmp = current;
+	while (current)
+	{
+		if (current->value > tmp->value)
+			tmp = current;
+		current = current->next;
+	}
+	return(tmp);
+}
+
+s_stack	*get_min(s_stack *stack)
+{
+	s_stack	*current;
+	s_stack	*tmp;
+
+	current = stack;
+	tmp = current;
+	while (current)
+	{
+		if (current->value < tmp->value)
+			tmp = current;
+		current = current->next;
+	}
+	return(tmp);
+}
+

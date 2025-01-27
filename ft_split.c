@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:58:32 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/25 17:58:31 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:37:45 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static	char	*duplicate(const char *s, char c)
 		len++;
 	p = malloc(len + 1);
 	if (!p)
-		return (NULL);
+		return (free(p), NULL);
 	while (i < len)
 	{
 		p[i] = s[i];

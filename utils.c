@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:51:41 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/26 14:08:56 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:42:57 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-int	ft_strcmp(char *str1, char *str2)
-{
-	int	i;
-
-	i = 0;
-	while ((str1[i] || str2[i]))
-	{
-		if (str1[i] != str2[i])
-			return (str1[i] - str2[i]);
-		i++;
-	}
-	return (0);
 }
 
 char    *ft_strcat(char *dest, char *src)
@@ -56,19 +42,6 @@ char    *ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-void	ft_strcpy(char *dest, char *src)
-{
-	unsigned int	j;
-
-	j = 0;
-	while (src[j])
-	{
-		dest[j] = src[j];
-		j++;
-	}
-	dest[j] = '\0';
-}
-
 void	free_split(char **split)
 {
 	int	i;
@@ -80,20 +53,6 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
-}
-
-int	not_sorted(int *arr, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (arr[i] > arr[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	is_dup(int *arr, int size)
@@ -108,7 +67,7 @@ void	is_dup(int *arr, int size)
 		while (j < size)
 		{
 			if (arr[i] == arr[j])
-				(write(2, "Error\n", 6), exit(1));
+				(write(2, "Error\n", 6), free(arr), exit(1));
 			j++;
 		}
 		i++;
