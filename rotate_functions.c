@@ -6,16 +6,16 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:00:53 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/27 11:07:47 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:40:29 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(s_stack **a, int i)
+void	ra(t_stack **a, int i)
 {
-	s_stack	*na;
-	s_stack	*tmp;
+	t_stack	*na;
+	t_stack	*tmp;
 
 	if (ft_stacksize(*a) < 2)
 		return ;
@@ -30,10 +30,10 @@ void	ra(s_stack **a, int i)
 		write (1, "ra\n", 3);
 }
 
-void	rb(s_stack **b, int i)
+void	rb(t_stack **b, int i)
 {
-	s_stack	*nb;
-	s_stack *tmp;
+	t_stack	*nb;
+	t_stack	*tmp;
 
 	if (ft_stacksize(*b) < 2)
 		return ;
@@ -48,7 +48,7 @@ void	rb(s_stack **b, int i)
 		write (1, "rb\n", 3);
 }
 
-void	rr(s_stack **a, s_stack **b)
+void	rr(t_stack **a, t_stack **b)
 {
 	ra(a, 0);
 	rb(b, 0);

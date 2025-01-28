@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:51:41 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/27 16:42:57 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:32:06 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,18 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char    *ft_strcat(char *dest, char *src)
+char	*ft_strcat(char *dest, char *src)
 {
-	int     i;
-	int     j;	
+	int	i;
+	int	j;	
+
 	i = 0;
 	j = 0;
 	while (dest[i] != '\0')
-	{
-	    i++;
-	}
+		i++;
 	while (src[j] != '\0')
 	{
-	    dest[i] = src[j];
+		dest[i] = src[j];
 		i++;
 		j++;
 	}
@@ -73,4 +72,21 @@ void	is_dup(int *arr, int size)
 		i++;
 	}
 	return ;
+}
+
+void	check_spaces(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (argv[i])
+	{
+		while (argv[i][j] == ' ')
+			j++;
+		if (argv[i][j] == '\0')
+			(write(2, "Error\n", 6), exit(1));
+		i++;
+	}
 }

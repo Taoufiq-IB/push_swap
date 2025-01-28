@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:17:57 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/28 10:19:16 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:39:46 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	get_signal(const char *nb, int *index)
 	}
 	return (signal);
 }
-	
+
 int	ft_atoi(char *nb, int *success)
 {
 	int		i;
@@ -34,7 +34,7 @@ int	ft_atoi(char *nb, int *success)
 
 	i = 0;
 	result = 0;
-	*success = 1; 
+	*success = 1;
 	while (nb[i] == ' ')
 		i++;
 	signal = get_signal(nb, &i);
