@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 17:58:00 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/25 18:00:11 by tibarike         ###   ########.fr       */
+/*   Created: 2025/01/28 10:17:57 by tibarike          #+#    #+#             */
+/*   Updated: 2025/01/28 10:19:16 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +26,7 @@ static int	get_signal(const char *nb, int *index)
 	return (signal);
 }
 	
-int	ft_atoi(char *nb)
+int	ft_atoi(char *nb, int *success)
 {
 	int		i;
 	long	result;
@@ -35,19 +34,20 @@ int	ft_atoi(char *nb)
 
 	i = 0;
 	result = 0;
+	*success = 1; 
 	while (nb[i] == ' ')
 		i++;
 	signal = get_signal(nb, &i);
 	if (!nb[i])
-		(write(2, "Error\n", 6), exit(1));
+		return (*success = 0, 0);
 	while (nb[i] >= '0' && nb[i] <= '9')
 	{
 		result = (result * 10) + (nb[i] - '0');
 		if (result * signal > INT_MAX || result * signal < INT_MIN)
-			(write(2, "Error\n", 6), exit(1));
+			return (*success = 0, 0);
 		i++;
 	}
 	if (nb[i])
-		(write(2, "Error\n", 6), exit(1));
-	return (result * signal);
+		return (*success = 0, 0);
+	return ((int)(result * signal));
 }

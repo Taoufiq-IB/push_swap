@@ -6,13 +6,13 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:33:55 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/27 17:28:44 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:48:26 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*join_arguments(int argc, char **argv, char sep)
+static char	*join_arguments(int argc, char **argv, char sep)
 {
 	char	*joined;
 	int		len;
@@ -40,20 +40,29 @@ char	*join_arguments(int argc, char **argv, char sep)
 	return (joined);
 }
 
-int	*init_array(int argc, char **argv, int *size)
+static char	**create_split(int argc, char **argv)
 {
-	char	*arr;
-	int		*int_arr;
-	char	**split;
 	int		i;
-	int		success;
-
+	char	*arr;
+	char	**split;
+	
 	i = 0;
 	arr = join_arguments(argc, argv, ' ');
 	if (!arr)
 		(write(2, "Error\n", 6), exit(1));
 	split = ft_split(arr, ' ');
 	free(arr);
+	return (split);
+}
+
+static int	*init_array(int argc, char **argv, int *size, int i)
+{
+	int		*int_arr;
+	char	**split;
+	int		success;
+
+	i = 0;
+	split = create_split(argc, argv);
 	while (split[i])
 		i++;
 	int_arr = malloc(i * sizeof(int));
@@ -72,12 +81,11 @@ int	*init_array(int argc, char **argv, int *size)
 		i++;
 	}
 	*size = i;
-	free_split(split);
-	return (int_arr);
+	return (free_split(split), int_arr);
 }
 
 
-void	create_stack(s_stack **a, int *int_arr, int size)
+static	void	create_stack(s_stack **a, int *int_arr, int size)
 {
 	int		i;
 	int		value;
@@ -99,11 +107,12 @@ int main(int argc, char **argv)
 	int		size;
 	s_stack *a = NULL;
 	s_stack *b = NULL;
+	// s_stack *tmp = NULL;
 	int		stack_size;
 
 	stack_size = 0;
 	size = 0;
-	int *arr = init_array(argc, argv, &size);
+	int *arr = init_array(argc, argv, &size, 0);
 	if (arr == NULL)
 		return(1);
 	is_dup(arr, size);
@@ -113,11 +122,13 @@ int main(int argc, char **argv)
 	{
 		if (ft_stacksize(a) <= 5)
 			sort_five_less(&a, &b);
+		else
+			push_to_b(a, b);
+			push_to_a(a, b);
 	}
 	ft_stackclear(&a);
 	return (0);
 }
-
 	// tmp = a;
 	// while (tmp)
 	// {

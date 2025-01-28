@@ -6,7 +6,7 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:21:14 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/27 17:45:53 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:55:35 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,8 @@ void	sort_five_less(s_stack **a, s_stack **b)
 		sort3(a);
 	else if (ft_stacksize(*a) == 4)
 		sort4(a, b);
-	else if (ft_stacksize(*a) == 5)
+	else 
 		sort5(a, b);
-	else if (ft_stacksize(*a) <= 100)
-		sort_100_less(a, b);
-	else if (ft_stacksize(*a) <= 500)
-		sort_500_less(a, b);
 }
 
 void	sort3(s_stack **a)
@@ -72,12 +68,34 @@ void	sort5(s_stack **a, s_stack **b)
 	pa(a, b);
 }
 
-void	sort_100_less(s_stack **a, s_stack **b)
+void	push_to_b(s_stack **a, s_stack **b)
 {
+	int		range;
+	int		i;
+	s_stack	*tmp;
 	
+	range = 16;
+	i = 0;
+	while (*a)
+	{
+		tmp = *a;
+		if (tmp->index <= i)
+		{
+			pb(a, b);
+			i++;
+		}
+		else if (tmp->index <= i + range)
+		{
+			pb(a, b);
+			rb(b, 1);
+			i++;
+		}
+		else
+			ra(a, 1);
+	}
 }
 
-void	sort_500_less(s_stack **a, s_stack **b)
+void	push_to_a(s_stack **a, s_stack **b)
 {
 	
 }
