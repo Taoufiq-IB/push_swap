@@ -6,11 +6,11 @@
 /*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:28:48 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/28 17:39:45 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:21:23 by tibarike         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 static t_stack	*ft_stacklast(t_stack *stack)
 {
@@ -71,7 +71,6 @@ int	ft_stacksize(t_stack *stack)
 	}
 	return (count);
 }
-
 
 void	ft_stackclear(t_stack **stack)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tibarike <tibarike@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:33:55 by tibarike          #+#    #+#             */
-/*   Updated: 2025/01/28 17:25:19 by tibarike         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:04:04 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,9 @@ static int	*init_array(int argc, char **argv, int *size, int i)
 static	void	create_stack(t_stack **a, int *int_arr, int size)
 {
 	int		i;
-	int		value;
 	t_stack	*new_stack;
 
 	i = 0;
-	value = 0;
 	while (i < size)
 	{
 		new_stack = ft_stacknew(int_arr[i], 0);
